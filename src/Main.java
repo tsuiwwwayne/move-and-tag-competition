@@ -17,7 +17,7 @@ public class Main {
         * Trying it out
         * */
         ArrayList<Instance> instances = new Instantiator().getInstances(INPUT_FILE);
-        Instance testInstance = instances.get(2);
+        Instance testInstance = instances.get(0);
         ArrayList<Robot> robots = testInstance.getRobots();
         System.out.println("--------------------Robot Coordinates--------------------");
         for (Robot r: robots) {
@@ -44,5 +44,8 @@ public class Main {
             }
         }
 
+        System.out.println("----------------Greedy Robots-------------------");
+        GreedyPlus gp = new GreedyPlus();
+        gp.greedyPlus(robots);
     }
 }
