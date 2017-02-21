@@ -17,7 +17,7 @@ public class Main {
         * Trying it out
         * */
         ArrayList<Instance> instances = new Instantiator().getInstances(INPUT_FILE);
-        Instance testInstance = instances.get(29);
+        Instance testInstance = instances.get(2);
         ArrayList<Robot> robots = testInstance.getRobots();
         System.out.println("--------------------Robot Coordinates--------------------");
         for (Robot r: robots) {
