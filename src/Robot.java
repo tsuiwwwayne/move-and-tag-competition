@@ -5,10 +5,16 @@ import java.awt.geom.Point2D;
  */
 public class Robot {
 
+    public enum Status {
+        AWAKE, ASLEEP, STOPPED
+    }
+
     private Point2D position;
+    public Status status;
 
     public Robot(Point2D position) {
         this.position = position;
+        this.status = Status.ASLEEP;
     }
 
     public Point2D getPosition() {
