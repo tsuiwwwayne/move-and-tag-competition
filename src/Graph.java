@@ -6,11 +6,13 @@ import java.util.ArrayList;
  */
 public class Graph {
 
+    private ArrayList<Obstacle> obstacles;
     private ArrayList<Node> nodes;
 
     public Graph(Instance instance) {
-        this.nodes = createNodes(instance.getObstacles());
-//        populateNodes(nodes, instance.getObstacles());
+        this.obstacles = instance.getObstacles();
+        this.nodes = createNodes(obstacles);
+        populateNodes(nodes, obstacles);
     }
 
     public ArrayList<Node> getNodes() {
@@ -18,30 +20,65 @@ public class Graph {
     }
 
     private ArrayList<Node> createNodes(ArrayList<Obstacle> obstacles) {
-        ArrayList<Node> n = new ArrayList<>();
-
-        return n;
-    }
-
-    private ArrayList<Node> populateNodes(ArrayList<Obstacle> obstacles) {
-        ArrayList<Node> n = new ArrayList<>();
-
+        ArrayList<Node> nodes = new ArrayList<>();
         for (Obstacle obs: obstacles) {
             ArrayList<Point2D> coordinates = obs.getCoordinates();
             for (Point2D c: coordinates) {
-                n.add(makeNode(c, obs, obstacles));
+                Node n = createNode(c);
+                nodes.add(n);
             }
         }
-        return n;
+        return nodes;
     }
 
-    private Node makeNode(final Point2D c, Obstacle parent, ArrayList<Obstacle> obstacles) {
+    private Node createNode(Point2D c) {
         ArrayList<Edge> e = new ArrayList<>();
-
-
-
-
         return new Node(c, e);
     }
+
+    // Allows addition of Start Robot Node and End Robot Node
+    public void addRobotNodes(Point2D robotStartPosition, Point2D robotEndPosition) {
+        Node rs = createNode(robotStartPosition);
+        Node re = createNode(robotEndPosition);
+        nodes.add(rs);
+        nodes.add(re);
+        populateRobotNodes(rs, re, nodes, obstacles);
+    }
+
+    private void populateRobotNodes(Node rs, Node re, ArrayList<Node> nodes, ArrayList<Obstacle> obstacles) {
+        // TODO: Function body
+    }
+
+    public void removeRobotNodes() {
+        // TODO: Add parameters and function body
+    }
+
+    /*
+        Purpose: fill the ArrayList of Edges
+        Key: Determine which is a valid edge to add to the list
+    */
+    private void populateNodes(ArrayList<Node> nodes, ArrayList<Obstacle> obstacles) {
+        for (Node n: nodes) {
+            populateNode(n, nodes, obstacles);
+        }
+    }
+
+    private void populateNode(Node n, ArrayList<Node> nodes, ArrayList<Obstacle> obstacles) {
+        for (Obstacle obs: obstacles) {
+            ArrayList<Point2D> coordinates = obs.getCoordinates();
+            for (Point2D c: coordinates) {
+
+            }
+        }
+    }
+
+//    private Node makeNode(final Point2D c, Obstacle parent, ArrayList<Obstacle> obstacles) {
+//
+//
+//
+//
+//
+//        return new Node(c, e);
+//    }
 
 }

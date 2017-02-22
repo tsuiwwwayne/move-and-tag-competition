@@ -45,12 +45,18 @@ public class Main {
             }
         }
 
-//        Graph g = new Graph(testInstance);
-//        if (g.getNodes().isEmpty()) {
-//            System.out.println("empty graph");
-//        }
+        Graph g = new Graph(testInstance);
+        if (g.getNodes().isEmpty()) {
+            System.out.println("empty graph");
+        } else {
+            for (Node n: g.getNodes()) {
+                System.out.println(n.getCoordinates());
+            }
+        }
+
 //        L-shape line considered intersect
 //        System.out.println(Line2D.linesIntersect(0,10,0,0,0,0,10,0));
+
 
     }
 }
