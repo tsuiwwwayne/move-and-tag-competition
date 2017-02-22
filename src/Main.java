@@ -71,6 +71,14 @@ public class Main {
 //        // L-shape line considered intersect
 //        System.out.println(Line2D.linesIntersect(0,10,0,0,0,0,10,0));
 
+        Node nn = g.getNodes().get(1);
+        System.out.println("host node is: " + nn.getCoordinates());
+        ArrayList<Edge> edges = nn.getEdges();
+        for (Edge e: edges) {
+            System.out.println(e.getEnd().getCoordinates());
+            System.out.println(e.getWeight());
+        }
+
 
     }
 }
