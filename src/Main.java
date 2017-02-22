@@ -20,8 +20,10 @@ public class Main {
         * Trying it out
         * */
         ArrayList<Instance> instances = new Instantiator().getInstances(INPUT_FILE);
-        Instance testInstance = instances.get(9);
+        Instance testInstance = instances.get(7);
         ArrayList<Robot> robots = testInstance.getRobots();
+        ArrayList<Obstacle> obstacles = testInstance.getObstacles();
+        PathFinder pathFinder = new PathFinder(8,robots,obstacles);
         System.out.println("--------------------Robot Coordinates--------------------");
         for (Robot r: robots) {
             System.out.print(r.getPosition().getX());
@@ -32,7 +34,6 @@ public class Main {
         if ((testInstance.getObstacles()).isEmpty()) {
             System.out.println("No obstacles in instance");
         } else {
-            ArrayList<Obstacle> obstacles = testInstance.getObstacles();
             System.out.println("--------------------Obstacle Coordinates--------------------");
             for (int i = 0; i < obstacles.size(); i++) {
                 ArrayList<Point2D> coors = obstacles.get(i).getCoordinates();
@@ -51,12 +52,11 @@ public class Main {
 
         Map<Integer, List<Integer>> movementSchedule = new HashMap<>();
         GreedyPlus gp = new GreedyPlus();
-        movementSchedule = gp.greedyPlus(robots);
+        movementSchedule = gp.greedyPlus(robots,pathFinder);
         Output output = new Output();
-        String output_str = output.generateOutputString(robots,movementSchedule);
-        System.out.println(movementSchedule);
+        obstacles = testInstance.getObstacles();
+        String output_str = output.generateOutputString(pathFinder,robots,obstacles,movementSchedule);
         System.out.println(output_str);
-
 
     }
 }
