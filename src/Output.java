@@ -12,7 +12,7 @@ public class Output {
 
             List<Integer> visitList = movementSchedule.get(i);
 
-            if (visitList.size() > 0) {
+            if (visitList != null && visitList.size() > 0) {
                 if (i > 0) sb.append("; ");
                 Robot bot = robots.get(i);
                 sb.append(getCoords(bot.getInitialPosition().getX(), bot.getInitialPosition().getY()));
