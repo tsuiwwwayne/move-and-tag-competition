@@ -10,7 +10,7 @@ import java.util.List;
  * Created by Raymond on 22/2/2017.
  */
 public class PathFinder {
-    public static final String FILE_PREFIX = "";
+    public static final String FILE_PREFIX = "./pathfinding/path_";
 
     private SymmetricMatrixPath paths;
     private List<Robot> robots;
@@ -18,13 +18,14 @@ public class PathFinder {
     public PathFinder(int instanceNumber, List<Robot> robots, List<Obstacle> obstacles) {
         this.robots = robots;
 
-        System.out.println("Pathfinder for instance: " + instanceNumber);
+        System.out.println("Pathfinder started for instance: " + instanceNumber);
         // Create new symmetric matrix of paths
         paths = new SymmetricMatrixPath(robots.size());
+        String filepath = FILE_PREFIX + instanceNumber + ".txt";
 
         try {
             // Load the file and parse it
-            List<String> file = Files.readAllLines(Paths.get(FILE_PREFIX + instanceNumber + ".txt"), StandardCharsets.UTF_8);
+            List<String> file = Files.readAllLines(Paths.get(filepath), StandardCharsets.UTF_8);
 
             for (int i=0; i<file.size(); i++) {
                 String[] line = file.get(i).split("#");
@@ -43,11 +44,11 @@ public class PathFinder {
                     paths.get(from, to).add(obstacles.get(obstacleIdx).getCoordinates().get(vertexIdx));
                 }
 
-                System.out.println("Pathfind parse complete.");
+                //System.out.println("Pathfind parse complete.");
             }
         } catch (IOException e) {
-            System.out.println("ERROR IN PATHFINDER");
-            e.printStackTrace();
+            System.out.println("ERROR: Pathfinder: Couldn't open file " + filepath);
+            //e.printStackTrace();
         }
     }
 
