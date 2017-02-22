@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.awt.geom.Line2D;
 import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
@@ -56,17 +55,55 @@ public class Graph {
     public void addRobotNodes(Point2D robotStartPosition, Point2D robotEndPosition) {
         Node rs = createNode(robotStartPosition);
         Node re = createNode(robotEndPosition);
-        nodes.add(rs);
-        nodes.add(re);
+        nodes.add(0, rs);
+        nodes.add(1, re);
         populateRobotNodes(rs, re, nodes, obstacles);
     }
 
     private void populateRobotNodes(Node rs, Node re, ArrayList<Node> nodes, ArrayList<Obstacle> obstacles) {
-        // TODO: Function body
+        // Populate two single nodes, rs and re.
+        populateNode(rs, nodes, obstacles);
+        populateNode(re, nodes, obstacles);
+        // For each single node, inside its list of edges, get those edges.
+        // Populate single node as an edge for those edges.
+        ArrayList<Edge> rsEdges = rs.getEdges();
+        for (Edge e: rsEdges) {
+            Node n = e.getEnd();
+            n.getEdges().add(new Edge(rs, e.getWeight()));
+        }
+        ArrayList<Edge> reEdges = re.getEdges();
+        for (Edge e: reEdges) {
+            Node n = e.getEnd();
+            n.getEdges().add(new Edge(re, e.getWeight()));
+        }
     }
 
-    public void removeRobotNodes() {
+    public void removeRobotNodes(Node rs, Node re) {
         // TODO: Add parameters and function body
+        // Remove rs and re from arraylist of nodes.
+        nodes.remove(rs);
+        nodes.remove(re);
+        // For all nodes, if node contains rs or re node as its edges, remove it
+        ArrayList<Edge> rsEdges = rs.getEdges();
+        for (Edge e: rsEdges) {
+            Node n = e.getEnd();
+            removeEdgeByEndNode(n, rs);
+        }
+        ArrayList<Edge> reEdges = re.getEdges();
+        for (Edge e: reEdges) {
+            Node n = e.getEnd();
+            removeEdgeByEndNode(n, re);
+        }
+
+    }
+
+    private void removeEdgeByEndNode(Node n, Node n1) {
+        ArrayList<Edge> edges = n.getEdges();
+        for (Edge e: edges) {
+            if (e.getEnd().equals(n1)) {
+                edges.remove(e);
+            }
+        }
     }
 
     private ArrayList<Point2D[]> generateAllCoordinatesPairs(ArrayList<Obstacle> obstacles) {
@@ -116,16 +153,6 @@ public class Graph {
     */
     private void populateNode(Node n, ArrayList<Node> nodes, ArrayList<Obstacle> obstacles) {
         ArrayList<Edge> edges = n.getEdges();
-//        for (Obstacle obs: obstacles) {
-//            ArrayList<Point2D> coordinates = obs.getCoordinates();
-//            for (Point2D c: coordinates) {
-//                if (isEdge(n, c, allCoordinatePairs)) {
-//                    Node end = getNodeViaCoordinates(c);
-//                    double weight = calculateWeightBetweenNodes(n, end);
-//                    edges.add(new Edge(end, weight));
-//                }
-//            }
-//        }
         for (Node c: nodes) {
             if (isEdge(n, c, allCoordinatePairs)) {
                 double weight = calculateWeightBetweenNodes(n, c);
@@ -144,7 +171,7 @@ public class Graph {
         return null;
     }
 
-    private Point2D[] getCoordinatePairbyValues(Point2D p1, Point2D p2) {
+    private Point2D[] getCoordinatePairByValues(Point2D p1, Point2D p2) {
         for (Point2D[] cp: allCoordinatePairs) {
             if ((cp[0].equals(p1) && cp[1].equals(p2)) || (cp[0].equals(p2) && cp[1].equals(p1))) {
                 return cp;
@@ -161,7 +188,7 @@ public class Graph {
             return false;
         }
         for (Path2D p: paths) {
-            if (p.contains(midpoint(s, e)) && (!(allCoordinatePairs.contains(getCoordinatePairbyValues(s, e))))) {
+            if (p.contains(midpoint(s, e)) && (!(allCoordinatePairs.contains(getCoordinatePairByValues(s, e))))) {
                 return false;
             }
         }

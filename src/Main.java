@@ -18,7 +18,7 @@ public class Main {
         * Trying it out
         * */
         ArrayList<Instance> instances = new Instantiator().getInstances(INPUT_FILE);
-        Instance testInstance = instances.get(1);
+        Instance testInstance = instances.get(2);
         ArrayList<Robot> robots = testInstance.getRobots();
         System.out.println("--------------------Robot Coordinates--------------------");
         for (Robot r: robots) {
@@ -71,7 +71,7 @@ public class Main {
 //        // L-shape line considered intersect
 //        System.out.println(Line2D.linesIntersect(0,10,0,0,0,0,10,0));
 
-        Node nn = g.getNodes().get(1);
+        Node nn = g.getNodes().get(2);
         System.out.println("host node is: " + nn.getCoordinates());
         ArrayList<Edge> edges = nn.getEdges();
         for (Edge e: edges) {
