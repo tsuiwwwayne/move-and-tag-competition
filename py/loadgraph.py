@@ -1,3 +1,5 @@
+# Path generator by Team Griffin
+
 from __future__ import print_function
 
 import pyvisgraph as vg
