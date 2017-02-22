@@ -15,12 +15,12 @@ public class Output {
             if (visitList.size() > 0) {
                 if (i > 0) sb.append("; ");
                 Robot bot = robots.get(i);
-                sb.append(getCoords(bot.getInitialPosition().getX(), bot.getInitialPosition().getY()));
+//                sb.append(getCoords(bot.getInitialPosition().getX(), bot.getInitialPosition().getY()));
 
                 for (int j = 0; j < visitList.size(); j++) {
                     sb.append(", ");
                     Robot bot2 = robots.get(visitList.get(j));
-                    sb.append(getCoords(bot2.getInitialPosition().getX(), bot2.getInitialPosition().getY()));
+//                    sb.append(getCoords(bot2.getInitialPosition().getX(), bot2.getInitialPosition().getY()));
                 }
             }
         }

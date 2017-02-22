@@ -1,3 +1,4 @@
+import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
@@ -43,6 +44,13 @@ public class Main {
 
             }
         }
+
+//        Graph g = new Graph(testInstance);
+//        if (g.getNodes().isEmpty()) {
+//            System.out.println("empty graph");
+//        }
+//        L-shape line considered intersect
+//        System.out.println(Line2D.linesIntersect(0,10,0,0,0,0,10,0));
 
     }
 }
