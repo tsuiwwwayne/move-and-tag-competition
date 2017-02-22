@@ -1,7 +1,6 @@
 /**
  * Created by Raymond on 22/2/2017.
  */
-import java.io.*;
 import java.util.*;
 
 /**
@@ -15,22 +14,22 @@ import java.util.*;
  * Edge cost modified to be double-precision type instead of integer for match-and-tag problem.
  */
 public class Dijkstra {
-    private static final Graph.Edge[] GRAPH = {
-            new Graph.Edge("a", "b", 7),
-            new Graph.Edge("a", "c", 9),
-            new Graph.Edge("a", "f", 14),
-            new Graph.Edge("b", "c", 10),
-            new Graph.Edge("b", "d", 15),
-            new Graph.Edge("c", "d", 11),
-            new Graph.Edge("c", "f", 2),
-            new Graph.Edge("d", "e", 6),
-            new Graph.Edge("e", "f", 9),
+    private static final Graph_Dijkstra.Edge[] GRAPH = {
+            new Graph_Dijkstra.Edge("a", "b", 7),
+            new Graph_Dijkstra.Edge("a", "c", 9),
+            new Graph_Dijkstra.Edge("a", "f", 14),
+            new Graph_Dijkstra.Edge("b", "c", 10),
+            new Graph_Dijkstra.Edge("b", "d", 15),
+            new Graph_Dijkstra.Edge("c", "d", 11),
+            new Graph_Dijkstra.Edge("c", "f", 2),
+            new Graph_Dijkstra.Edge("d", "e", 6),
+            new Graph_Dijkstra.Edge("e", "f", 9),
     };
     private static final String START = "a";
     private static final String END = "e";
 
     public static void main(String[] args) {
-        Graph g = new Graph(GRAPH);
+        Graph_Dijkstra g = new Graph_Dijkstra(GRAPH);
         g.dijkstra(START);
         g.printPath(END);
         //g.printAllPaths();
@@ -43,10 +42,10 @@ public class Dijkstra {
     }
 }
 
-class Graph {
+class Graph_Dijkstra {
     private final Map<String, Vertex> graph; // mapping of vertex names to Vertex objects, built from a set of Edges
 
-    /** One edge of the graph (only used by Graph constructor) */
+    /** One edge of the graph (only used by Graph_Dijkstra constructor) */
     public static class Edge {
         public final String v1, v2;
         public final double dist;
@@ -101,7 +100,7 @@ class Graph {
     }
 
     /** Builds a graph from a set of edges */
-    public Graph(Edge[] edges) {
+    public Graph_Dijkstra(Edge[] edges) {
         graph = new HashMap<>(edges.length);
 
         //one pass to find all vertices
@@ -120,7 +119,7 @@ class Graph {
     /** Runs dijkstra using a specified source vertex */
     public void dijkstra(String startName) {
         if (!graph.containsKey(startName)) {
-            System.err.printf("Graph doesn't contain start vertex \"%s\"\n", startName);
+            System.err.printf("Graph_Dijkstra doesn't contain start vertex \"%s\"\n", startName);
             return;
         }
         final Vertex source = graph.get(startName);
@@ -162,7 +161,7 @@ class Graph {
     /** Prints a path from the source to the specified vertex */
     public void printPath(String endName) {
         if (!graph.containsKey(endName)) {
-            System.err.printf("Graph doesn't contain end vertex \"%s\"\n", endName);
+            System.err.printf("Graph_Dijkstra doesn't contain end vertex \"%s\"\n", endName);
             return;
         }
 

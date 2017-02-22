@@ -2,6 +2,7 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by waynetsui on 22/2/17.
@@ -11,8 +12,9 @@ public class Graph {
     private ArrayList<Obstacle> obstacles;
     private ArrayList<Node> nodes;
     private ArrayList<Point2D[]> allCoordinatePairs;
-
     private ArrayList<Path2D> paths;
+    private Node robotStart;
+    private Node robotEnd;
 
     public Graph(Instance instance) {
         this.obstacles = instance.getObstacles();
@@ -52,12 +54,12 @@ public class Graph {
     }
 
     // Allows addition of Start Robot Node and End Robot Node
-    public void addRobotNodes(Point2D robotStartPosition, Point2D robotEndPosition) {
-        Node rs = createNode(robotStartPosition);
-        Node re = createNode(robotEndPosition);
-        nodes.add(0, rs);
-        nodes.add(1, re);
-        populateRobotNodes(rs, re, nodes, obstacles);
+    synchronized public void addRobotNodes(Point2D robotStartPosition, Point2D robotEndPosition) {
+        robotStart = createNode(robotStartPosition);
+        robotEnd = createNode(robotEndPosition);
+        nodes.add(0, robotStart);
+        nodes.add(1, robotEnd);
+        populateRobotNodes(robotStart, robotEnd, nodes, obstacles);
     }
 
     private void populateRobotNodes(Node rs, Node re, ArrayList<Node> nodes, ArrayList<Obstacle> obstacles) {
@@ -78,32 +80,38 @@ public class Graph {
         }
     }
 
-    public void removeRobotNodes(Node rs, Node re) {
+    synchronized public void removeRobotNodes() {
         // TODO: Add parameters and function body
         // Remove rs and re from arraylist of nodes.
-        nodes.remove(rs);
-        nodes.remove(re);
+        nodes.remove(robotStart);
+        nodes.remove(robotEnd);
         // For all nodes, if node contains rs or re node as its edges, remove it
-        ArrayList<Edge> rsEdges = rs.getEdges();
+        ArrayList<Edge> rsEdges = robotStart.getEdges();
         for (Edge e: rsEdges) {
             Node n = e.getEnd();
-            removeEdgeByEndNode(n, rs);
+            removeEdgeByEndNode(n, robotStart);
         }
-        ArrayList<Edge> reEdges = re.getEdges();
+        ArrayList<Edge> reEdges = robotEnd.getEdges();
         for (Edge e: reEdges) {
             Node n = e.getEnd();
-            removeEdgeByEndNode(n, re);
+            removeEdgeByEndNode(n, robotEnd);
         }
 
     }
 
     private void removeEdgeByEndNode(Node n, Node n1) {
         ArrayList<Edge> edges = n.getEdges();
-        for (Edge e: edges) {
+        for (Iterator<Edge> iterator = edges.iterator(); iterator.hasNext(); ) {
+            Edge e = iterator.next();
             if (e.getEnd().equals(n1)) {
-                edges.remove(e);
+                iterator.remove();
             }
         }
+//        for (Edge e: edges) {
+//            if (e.getEnd().equals(n1)) {
+//                edges.remove(e);
+//            }
+//        }
     }
 
     private ArrayList<Point2D[]> generateAllCoordinatesPairs(ArrayList<Obstacle> obstacles) {

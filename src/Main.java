@@ -1,4 +1,3 @@
-import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
@@ -71,13 +70,38 @@ public class Main {
 //        // L-shape line considered intersect
 //        System.out.println(Line2D.linesIntersect(0,10,0,0,0,0,10,0));
 
-        Node nn = g.getNodes().get(2);
+        g.addRobotNodes(new Point2D.Double(1.1,1.0), new Point2D.Double(1.51,1.51));
+        Node nn = g.getNodes().get(0);
         System.out.println("host node is: " + nn.getCoordinates());
         ArrayList<Edge> edges = nn.getEdges();
         for (Edge e: edges) {
             System.out.println(e.getEnd().getCoordinates());
             System.out.println(e.getWeight());
         }
+        g.removeRobotNodes();
+        g.addRobotNodes(new Point2D.Double(1.9,1.9), new Point2D.Double(1.5,1.5));
+        Node nnn = g.getNodes().get(0);
+        System.out.println("host node is: " + nnn.getCoordinates());
+        ArrayList<Edge> edges2 = nnn.getEdges();
+        for (Edge e: edges2) {
+            System.out.println(e.getEnd().getCoordinates());
+            System.out.println(e.getWeight());
+        }
+        Node nnnn = g.getNodes().get(2);
+        System.out.println("host node is: " + nnnn.getCoordinates());
+        ArrayList<Edge> edges3 = nnnn.getEdges();
+        for (Edge e: edges3) {
+            System.out.println(e.getEnd().getCoordinates());
+            System.out.println(e.getWeight());
+        }
+        System.out.println("--------------------");
+        ArrayList<Node> yoyo = g.getNodes();
+        for (Node y: yoyo) {
+            System.out.println(y.getCoordinates());
+        }
+        System.out.println("--------------------");
+        g.removeRobotNodes();
+
 
 
     }
