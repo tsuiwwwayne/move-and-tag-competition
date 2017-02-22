@@ -1,3 +1,5 @@
+# Visgraph generator by Team Griffin
+
 from __future__ import print_function
 import pyvisgraph as vg
 import itertools
@@ -19,4 +21,3 @@ if (len(sys.argv) > 1):
     
 else:
     print("Invalid instance number")
-
