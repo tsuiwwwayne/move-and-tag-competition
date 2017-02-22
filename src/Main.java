@@ -18,7 +18,7 @@ public class Main {
         * Trying it out
         * */
         ArrayList<Instance> instances = new Instantiator().getInstances(INPUT_FILE);
-        Instance testInstance = instances.get(2);
+        Instance testInstance = instances.get(1);
         ArrayList<Robot> robots = testInstance.getRobots();
         System.out.println("--------------------Robot Coordinates--------------------");
         for (Robot r: robots) {
@@ -53,8 +53,22 @@ public class Main {
                 System.out.println(n.getCoordinates());
             }
         }
+        ArrayList<Point2D[]> acp = g.getAllCoordinatePairs();
+        for (Point2D[] arr: acp) {
+            System.out.print(arr[0] + "------" + arr[1]);
+            System.out.println();
+        }
 
-//        L-shape line considered intersect
+//        // Able to compare Point2D type by its values
+//        Point2D pd = new Point2D.Double(5.5,5);
+//        Point2D pdd = new Point2D.Double(5,5);
+//        if (pd.equals(pdd)) {
+//            System.out.println("Point2Ds are equal");
+//        } else {
+//            System.out.println("Point2Ds are NOT equal");
+//        }
+
+//        // L-shape line considered intersect
 //        System.out.println(Line2D.linesIntersect(0,10,0,0,0,0,10,0));
 
 

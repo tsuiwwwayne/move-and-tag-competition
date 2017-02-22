@@ -8,15 +8,21 @@ public class Graph {
 
     private ArrayList<Obstacle> obstacles;
     private ArrayList<Node> nodes;
+    private ArrayList<Point2D[]> allCoordinatePairs;
 
     public Graph(Instance instance) {
         this.obstacles = instance.getObstacles();
         this.nodes = createNodes(obstacles);
+        this.allCoordinatePairs = generateAllCoordinatesPairs(obstacles);
         populateNodes(nodes, obstacles);
     }
 
     public ArrayList<Node> getNodes() {
         return nodes;
+    }
+
+    public ArrayList<Point2D[]> getAllCoordinatePairs() {
+        return allCoordinatePairs;
     }
 
     private ArrayList<Node> createNodes(ArrayList<Obstacle> obstacles) {
@@ -53,17 +59,36 @@ public class Graph {
         // TODO: Add parameters and function body
     }
 
-    /*
-        Purpose: fill the ArrayList of Edges
-        Key: Determine which is a valid edge to add to the list
-    */
+    private ArrayList<Point2D[]> generateAllCoordinatesPairs(ArrayList<Obstacle> obstacles) {
+        ArrayList<Point2D[]> acp = new ArrayList<>();
+        for (Obstacle obs: obstacles) {
+            ArrayList<Point2D> coordinates = obs.getCoordinates();
+            for (int i = 0; i < coordinates.size(); i++) {
+                Point2D[] cp = new Point2D[2];
+                cp[0] = coordinates.get(i);
+                if (i+1 == coordinates.size()) {
+                    cp[1] = coordinates.get(0);
+                } else {
+                    cp[1] = coordinates.get(i+1);
+                }
+                acp.add(cp);
+            }
+        }
+        return acp;
+    }
+
     private void populateNodes(ArrayList<Node> nodes, ArrayList<Obstacle> obstacles) {
         for (Node n: nodes) {
             populateNode(n, nodes, obstacles);
         }
     }
 
+    /*
+        Purpose: fill the ArrayList of Edges
+        Key: Determine which is a valid edge to add to the list
+    */
     private void populateNode(Node n, ArrayList<Node> nodes, ArrayList<Obstacle> obstacles) {
+        ArrayList<Edge> edges = n.getEdges();
         for (Obstacle obs: obstacles) {
             ArrayList<Point2D> coordinates = obs.getCoordinates();
             for (Point2D c: coordinates) {
@@ -71,14 +96,5 @@ public class Graph {
             }
         }
     }
-
-//    private Node makeNode(final Point2D c, Obstacle parent, ArrayList<Obstacle> obstacles) {
-//
-//
-//
-//
-//
-//        return new Node(c, e);
-//    }
 
 }
