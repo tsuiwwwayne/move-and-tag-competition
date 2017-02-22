@@ -1,5 +1,8 @@
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Main {
 
@@ -17,7 +20,7 @@ public class Main {
         * Trying it out
         * */
         ArrayList<Instance> instances = new Instantiator().getInstances(INPUT_FILE);
-        Instance testInstance = instances.get(0);
+        Instance testInstance = instances.get(9);
         ArrayList<Robot> robots = testInstance.getRobots();
         System.out.println("--------------------Robot Coordinates--------------------");
         for (Robot r: robots) {
@@ -44,8 +47,16 @@ public class Main {
             }
         }
 
-        System.out.println("----------------Greedy Robots-------------------");
+        System.out.println("----------------Output-------------------");
+
+        Map<Integer, List<Integer>> movementSchedule = new HashMap<>();
         GreedyPlus gp = new GreedyPlus();
-        gp.greedyPlus(robots);
+        movementSchedule = gp.greedyPlus(robots);
+        Output output = new Output();
+        String output_str = output.generateOutputString(robots,movementSchedule);
+        System.out.println(movementSchedule);
+        System.out.println(output_str);
+
+
     }
 }

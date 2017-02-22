@@ -8,19 +8,19 @@ import java.util.Map;
 public class Output {
     public static String generateOutputString(ArrayList<Robot> robots, Map<Integer, List<Integer>> movementSchedule) {
         StringBuilder sb = new StringBuilder();
-        for (int i=0; i<movementSchedule.size(); i++) {
+        for (int i=0; i<robots.size(); i++) {
 
             List<Integer> visitList = movementSchedule.get(i);
 
-            if (visitList.size() > 0) {
+            if (visitList != null && visitList.size() > 0) {
                 if (i > 0) sb.append("; ");
                 Robot bot = robots.get(i);
-                sb.append(getCoords(bot.getInitialPosition().getX(), bot.getInitialPosition().getY()));
+                sb.append(getCoords(bot.getPosition().getX(), bot.getPosition().getY()));
 
                 for (int j = 0; j < visitList.size(); j++) {
                     sb.append(", ");
                     Robot bot2 = robots.get(visitList.get(j));
-                    sb.append(getCoords(bot2.getInitialPosition().getX(), bot2.getInitialPosition().getY()));
+                    sb.append(getCoords(bot2.getPosition().getX(), bot2.getPosition().getY()));
                 }
             }
         }

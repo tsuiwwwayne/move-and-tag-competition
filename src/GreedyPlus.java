@@ -24,7 +24,7 @@ public class GreedyPlus {
     }
 
     // Main Algorithm
-    public void greedyPlus(ArrayList<Robot> robot){
+    public Map<Integer, List<Integer>> greedyPlus(ArrayList<Robot> robot){
         ArrayList<GreedyRobot> robots = new ArrayList<GreedyRobot>();
         // Make a copy of robots
         for(Robot r : robot){
@@ -174,5 +174,7 @@ public class GreedyPlus {
         for(Integer i : s){
             System.out.print(i + " ");
         }
+
+        return movementSchedule;
     }
 }
