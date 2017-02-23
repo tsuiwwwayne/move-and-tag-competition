@@ -9,6 +9,7 @@ import java.util.Iterator;
  */
 public class Graph {
 
+    private  ArrayList<Robot> robots;
     private ArrayList<Obstacle> obstacles;
     private ArrayList<Node> nodes;
     private ArrayList<Point2D[]> allCoordinatePairs;
@@ -17,6 +18,7 @@ public class Graph {
     private Node robotEnd;
 
     public Graph(Instance instance) {
+        this.robots = instance.getRobots();
         this.obstacles = instance.getObstacles();
         this.nodes = createNodes(obstacles);
         this.allCoordinatePairs = generateAllCoordinatesPairs(obstacles);
@@ -254,9 +256,11 @@ public class Graph {
         return dEdges;
     }
 
-    public double getDistance(Robot r1, Robot r2) {
-        Point2D p1 = r1.getPosition();
-        Point2D p2 = r2.getPosition();
+    public double getDistance(int r1, int r2) {
+        Robot start = robots.get(r1);
+        Robot end = robots.get(r2);
+        Point2D p1 = start.getPosition();
+        Point2D p2 = end.getPosition();
         addRobotNodes(p1, p2);
 
         ArrayList<Graph_Dijkstra.Edge> dEdges = generateDijkstraGraph();
@@ -271,9 +275,11 @@ public class Graph {
         return distance;
     }
 
-    public ArrayList<Point2D> getPath(Robot r1, Robot r2) {
-        Point2D p1 = r1.getPosition();
-        Point2D p2 = r2.getPosition();
+    public ArrayList<Point2D> getPath(int r1, int r2) {
+        Robot start = robots.get(r1);
+        Robot end = robots.get(r2);
+        Point2D p1 = start.getPosition();
+        Point2D p2 = end.getPosition();
         addRobotNodes(p1, p2);
 
         ArrayList<Graph_Dijkstra.Edge> dEdges = generateDijkstraGraph();
