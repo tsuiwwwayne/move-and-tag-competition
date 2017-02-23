@@ -9,9 +9,9 @@ import java.util.Map;
  */
 public class GreedyPlus {
 
-    public Double getLineDist(PathFinder pathFinder, int robotOne, int robotTwo, Double distanceSinceLastJump){
+    public Double getLineDist(Graph g, int robotOne, int robotTwo, Double distanceSinceLastJump){
         // Distance
-        Double absDistance = pathFinder.getDistance(robotOne,robotTwo);
+        Double absDistance = g.getDistance(robotOne,robotTwo);
         Double d = absDistance - distanceSinceLastJump;
         return d;
     }

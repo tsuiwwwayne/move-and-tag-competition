@@ -15,10 +15,11 @@ public class Main {
 
     public static void main(String[] args) {
         ArrayList<Instance> instances = new Instantiator().getInstances(INPUT_FILE);
-        Instance testInstance = instances.get(5);
+        Instance testInstance = instances.get(0);
         ArrayList<Robot> robots = testInstance.getRobots();
         ArrayList<Obstacle> obstacles = testInstance.getObstacles();
-        PathFinder pathFinder = new PathFinder(6,robots,obstacles);
+        //PathFinder pathFinder = new PathFinder(1,robots,obstacles);
+        Graph g = new Graph(testInstance);
         System.out.println("--------------------Robot Coordinates--------------------");
         for (Robot r: robots) {
             System.out.print(r.getPosition().getX());
@@ -47,10 +48,10 @@ public class Main {
 
         Map<Integer, List<Integer>> movementSchedule = new HashMap<>();
         GreedyPlus gp = new GreedyPlus();
-        movementSchedule = gp.greedyPlus(robots,pathFinder);
+        movementSchedule = gp.greedyPlus(robots,g);
         Output output = new Output();
         obstacles = testInstance.getObstacles();
-        String output_str = output.generateOutputString(pathFinder,robots,obstacles,movementSchedule);
+        String output_str = output.generateOutputString(g,robots,obstacles,movementSchedule);
         System.out.println(output_str);
 
     }

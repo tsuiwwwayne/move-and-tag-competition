@@ -7,7 +7,7 @@ import java.util.Map;
  * Created by Raymond on 21/2/2017.
  */
 public class Output {
-    public static String generateOutputString(PathFinder pathFinder, ArrayList<Robot> robots, ArrayList<Obstacle> obstacles ,Map<Integer, List<Integer>> movementSchedule) {
+    public static String generateOutputString(Graph g, ArrayList<Robot> robots, ArrayList<Obstacle> obstacles ,Map<Integer, List<Integer>> movementSchedule) {
         StringBuilder sb = new StringBuilder();
         for (int i=0; i<robots.size(); i++) {
             //Get array list in Map
@@ -18,7 +18,7 @@ public class Output {
                 Robot bot = robots.get(i); // Moving bot
                 sb.append(getCoords(bot.getPosition().getX(), bot.getPosition().getY()));// append moving robot
                 sb.append(", ");
-                ArrayList<Point2D> obsPts = pathFinder.getPath(i,visitList.get(0));
+                ArrayList<Point2D> obsPts = g.getPath(i,visitList.get(0));
                 String obsPath = coordsToString(obsPts);// generate path string
                 System.out.println("Obstacles from robot " + i + " and " + visitList.get(0) + " are " + obsPts);
                 sb.append(obsPath);
@@ -35,7 +35,7 @@ public class Output {
                             sb.append(getCoords(bot2.getPosition().getX(), bot2.getPosition().getY()));
                             sb.append(", ");
                         }
-                        obsPts = pathFinder.getPath(visitList.get(j),visitList.get(j+1));
+                        obsPts = g.getPath(visitList.get(j),visitList.get(j+1));
                         System.out.println("Obstacles from robot " + visitList.get(j) + " and " + visitList.get(j+1) + " are " + obsPts);
                         obsPath = coordsToString(obsPts);
                         sb.append(obsPath);
