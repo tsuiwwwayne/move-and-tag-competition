@@ -267,7 +267,7 @@ public class Graph {
 
         Graph_Dijkstra g = new Graph_Dijkstra(dEdges);
         g.dijkstra(p1);
-        g.printPath(p2);
+        //g.printPath(p2);
         double distance = g.returnDistance(p2);
 
         removeRobotNodes();
@@ -286,7 +286,7 @@ public class Graph {
 
         Graph_Dijkstra g = new Graph_Dijkstra(dEdges);
         g.dijkstra(p1);
-        g.printPath(p2);
+        //g.printPath(p2);
         ArrayList<Point2D> path = g.returnPath(p2);
 
         removeRobotNodes();

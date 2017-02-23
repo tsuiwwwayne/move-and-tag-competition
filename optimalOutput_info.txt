@@ -4,12 +4,12 @@ TIMINGS TABLE
 
 OK | No | Time      | Best      | Remarks
 ---------------------------------------------------------------------------------------
-   | 01 | N/A       | 16.263    | Possible to do by hand
+ X | 01 | 16.263    | 16.263    | OPTIMAL
  X | 02 | 16.194    | 16.194    | OPTIMAL
-   | 03 | 15.289    | 11.715    | More than 2 points, but possible to do by hand.
+ X | 03 | 11.715    | 11.715    | OPTIMAL
  X | 04 | 15.818    | 15.818    | OPTIMAL
  X | 05 | 80.479    | 80.479    | OPTIMAL
-   | 06 | N/A       | 166.625   | Two points, but strangely nobody has a common optimal answer. (obstacle issue)
+ X | 06 | 166.625   | 166.625   | OPTIMAL
  X | 07 | 272.513   | 272.513   | OPTIMAL
    | 08 | 551.42    | 530.749   | (lindworm)
    | 09 | 366.46    | 350.572   | (lindworm)
