@@ -25,13 +25,14 @@ from collections import defaultdict
 
 
 class Point(object):
-    __slots__ = ('x', 'y', 'polygon_id', 'polygon_id_2')
+    __slots__ = ('x', 'y', 'polygon_id', 'extradata_1', 'extradata_2')
 
-    def __init__(self, x, y, polygon_id=-1, polygon_id_2=-1):
+    def __init__(self, x, y, extradata_1=-1, extradata_2=-1, polygon_id=-1):
         self.x = float(x)
         self.y = float(y)
         self.polygon_id = polygon_id
-        self.polygon_id_2 = polygon_id_2
+        self.extradata_1 = extradata_1
+        self.extradata_2 = extradata_2
 
     def __eq__(self, point):
         return point and self.x == point.x and self.y == point.y
