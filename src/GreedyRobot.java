@@ -12,3 +12,4 @@ public class GreedyRobot extends Robot {
        super(position);
     }
 }
+

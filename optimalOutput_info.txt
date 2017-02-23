@@ -1,0 +1,60 @@
+-------------------
+TIMINGS TABLE
+-------------------
+
+OK | No | Time      | Best      | Remarks
+---------------------------------------------------------------------------------------
+ X | 01 | 16.263    | 16.263    | OPTIMAL
+ X | 02 | 16.194    | 16.194    | OPTIMAL
+ X | 03 | 11.715    | 11.715    | OPTIMAL
+ X | 04 | 15.818    | 15.818    | OPTIMAL
+ X | 05 | 80.479    | 80.479    | OPTIMAL
+ X | 06 | 166.625   | 166.625   | OPTIMAL
+ X | 07 | 272.513   | 272.513   | OPTIMAL
+   | 08 | 551.42    | 530.749   | (lindworm)
+   | 09 | 366.46    | 350.572   | (lindworm)
+   | 10 | 434.402   | 406.496   | (lindworm)
+   | 11 | 16.967    | 16.762    | Close (lindworm)
+   | 12 | N/A       |           |
+   | 13 | N/A       |           |
+   | 14 | 26.065    | 24.565    | (qilin)
+   | 15 | 20.001    | 17.704    | (lindworm)
+   | 16 | 19.716    | 17.718    | (lindworm)
+   | 17 | N/A       |           |
+   | 18 | 18.794    | 18.361    | Close (lindworm)
+   | 19 | N/A       |           |
+   | 20 | 29.524    | 26.749    | (lindworm)
+   | 21 | N/A       |           |
+   | 22 | N/A       |           |
+   | 23 | N/A       |           |
+   | 24 | N/A       |           |
+   | 25 | N/A       |           |
+   | 26 | N/A       |           |
+   | 27 | N/A       |           |
+   | 28 | N/A       |           |
+   | 29 | N/A       |           |
+   | 30 | N/A       |           |
+
+
+-------------------
+NOTES
+-------------------
+An optimal solution is possible for just two robots.
+
+Optimal solution achieved:
+2 (16.194)
+4 (15.818)
+5 (80.479)
+7 (272.513)
+
+Optimal solution possible but not achieved:
+3 (optimal: 11.715) (current: 15.289)
+6 (unknown optimal - two points) (current: intersecting obstacle)
+
+Good timings:
+11, 18
+
+Optimal solution not likely possible:
+
+
+Others:
