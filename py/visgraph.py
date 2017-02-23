@@ -15,7 +15,7 @@ if (len(sys.argv) > 1):
     t0 = time.clock()
     print("Building visgraph for instance %d." % instance_number)
     g = vg.VisGraph()
-    g.build(polys)
+    g.build(polys, status = True)
     g.save('graph_%d.pk1' % instance_number)
     print("Building visgraph took %f seconds." % (time.clock()-t0))
     
