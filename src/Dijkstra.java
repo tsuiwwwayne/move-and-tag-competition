@@ -15,32 +15,11 @@ import java.util.*;
  * Edge cost modified to be double-precision type instead of integer for match-and-tag problem.
  */
 public class Dijkstra {
-//    private static final Graph_Dijkstra.Edge[] GRAPH = {
-//            new Graph_Dijkstra.Edge("a", "b", 7),
-//            new Graph_Dijkstra.Edge("a", "c", 9),
-//            new Graph_Dijkstra.Edge("a", "f", 14),
-//            new Graph_Dijkstra.Edge("b", "c", 10),
-//            new Graph_Dijkstra.Edge("b", "d", 15),
-//            new Graph_Dijkstra.Edge("c", "d", 11),
-//            new Graph_Dijkstra.Edge("c", "f", 2),
-//            new Graph_Dijkstra.Edge("d", "e", 6),
-//            new Graph_Dijkstra.Edge("e", "f", 9),
-//    };
-//    private static final String START = "a";
-//    private static final String END = "e";
 
     public static void main(String[] args) {
-//        Graph_Dijkstra g = new Graph_Dijkstra(GRAPH);
-//        g.dijkstra(START);
-//        g.printPath(END);
-//        g.printAllPaths();
+
     }
 
-    public static void fromObstacleList(ArrayList<Obstacle> obstacles) {
-        for (int i=0; i<obstacles.size(); i++) {
-
-        }
-    }
 }
 
 class Graph_Dijkstra {
@@ -68,7 +47,6 @@ class Graph_Dijkstra {
         public double dist = Double.MAX_VALUE; // MAX_VALUE assumed to be infinity
         public Vertex previous = null;
         public final Map<Vertex, Double> neighbours = new HashMap<>();
-//        public ArrayList<Point2D> path = new ArrayList<>();
 
         public Vertex(String name, Point2D coordinates)
         {
@@ -86,10 +64,6 @@ class Graph_Dijkstra {
                 path.add(this.coordinates);
             }
         }
-
-//        private ArrayList<Point2D> returnArray() {
-//            return path;
-//        }
 
         private double returnDistance() {
             return this.dist;
@@ -114,17 +88,12 @@ class Graph_Dijkstra {
 
         public int compareTo(Vertex other)
         {
-            if (dist == other.dist)
+            if (dist == other.dist) {
                 return name.compareTo(other.name);
-//                return name.equals(other.name) ? 0 : 0;
+            }
 
             return Double.compare(dist, other.dist);
         }
-
-//        @Override public String toString()
-//        {
-//            return "(" + name + ", " + dist + ")";
-//        }
     }
 
     /** Builds a graph from a set of edges */
