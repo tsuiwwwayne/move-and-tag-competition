@@ -4,14 +4,14 @@ TIMINGS TABLE
 
 OK | No | Time      | Best      | Remarks
 ---------------------------------------------------------------------------------------
- X | 01 | 16.263    | 16.263    | OPTIMAL
- X | 02 | 16.194    | 16.194    | OPTIMAL
- X | 03 | 11.715    | 11.715    | OPTIMAL
- X | 04 | 15.818    | 15.818    | OPTIMAL
- X | 05 | 80.479    | 80.479    | OPTIMAL
- X | 06 | 166.625   | 166.625   | OPTIMAL
- X | 07 | 272.513   | 272.513   | OPTIMAL
-   | 08 | 551.42    | 530.749   | (lindworm)
+ X | 01 | 16.263    | 16.263    | OPTIMAL (multiple points - done by hand)
+ X | 02 | 16.194    | 16.194    | OPTIMAL (guaranteed - two points)
+ Y | 03 | 11.715    | 11.715    | BEST (lindworm)
+ X | 04 | 15.818    | 15.818    | OPTIMAL (guaranteed - two points)
+ X | 05 | 80.479    | 80.479    | OPTIMAL (guaranteed - two points)
+ Y | 06 | 166.625   | 166.625   | BEST (lindworm)
+ X | 07 | 272.513   | 272.513   | OPTIMAL (guaranteed - two points)
+ Y | 08 | 530.749   | 530.749   | BEST (lindworm)
    | 09 | 366.46    | 350.572   | (lindworm)
    | 10 | 434.402   | 406.496   | (lindworm)
    | 11 | 16.967    | 16.762    | Close (lindworm)
