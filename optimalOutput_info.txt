@@ -5,13 +5,13 @@ TIMINGS TABLE
 OK | No | Time      | Best      | Remarks
 ---------------------------------------------------------------------------------------
    | 01 | N/A       | 16.263    | Possible to do by hand
- X | 02 | 16.194    | 16.194    | OPTIMAL
-   | 03 | 15.289    | 11.715    | More than 2 points, but possible to do by hand.
- X | 04 | 15.818    | 15.818    | OPTIMAL
- X | 05 | 80.479    | 80.479    | OPTIMAL
+ X | 02 | 16.194    | 16.194    | OPTIMAL (guaranteed - two points)
+ Y | 03 | 11.715    | 11.715    | BEST (lindworm)
+ X | 04 | 15.818    | 15.818    | OPTIMAL (guaranteed - two points)
+ X | 05 | 80.479    | 80.479    | OPTIMAL (guaranteed - two points)
    | 06 | N/A       | 166.625   | Two points, but strangely nobody has a common optimal answer. (obstacle issue)
- X | 07 | 272.513   | 272.513   | OPTIMAL
-   | 08 | 551.42    | 530.749   | (lindworm)
+ X | 07 | 272.513   | 272.513   | OPTIMAL (guaranteed - two points)
+ Y | 08 | 530.749   | 530.749   | BEST (lindworm)
    | 09 | 366.46    | 350.572   | (lindworm)
    | 10 | 434.402   | 406.496   | (lindworm)
    | 11 | 16.967    | 16.762    | Close (lindworm)
