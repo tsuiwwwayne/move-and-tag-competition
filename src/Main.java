@@ -20,10 +20,10 @@ public class Main {
         * Trying it out
         * */
         ArrayList<Instance> instances = new Instantiator().getInstances(INPUT_FILE);
-        Instance testInstance = instances.get(7);
+        Instance testInstance = instances.get(5);
         ArrayList<Robot> robots = testInstance.getRobots();
         ArrayList<Obstacle> obstacles = testInstance.getObstacles();
-        PathFinder pathFinder = new PathFinder(8,robots,obstacles);
+        PathFinder pathFinder = new PathFinder(6,robots,obstacles);
         System.out.println("--------------------Robot Coordinates--------------------");
         for (Robot r: robots) {
             System.out.print(r.getPosition().getX());

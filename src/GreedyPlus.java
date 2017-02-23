@@ -9,11 +9,16 @@ import java.util.Map;
  */
 public class GreedyPlus {
 
-
     public Double getLineDist(PathFinder pathFinder, int robotOne, int robotTwo, Double distanceSinceLastJump){
         // Distance
         Double absDistance = pathFinder.getDistance(robotOne,robotTwo);
         Double d = absDistance - distanceSinceLastJump;
+        return d;
+    }
+
+    public Double getLineDist(Double x1, Double x2, Double y1, Double y2, Double distanceSinceLastJump){
+        // Distance
+        Double d = Math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1)) - distanceSinceLastJump;
         return d;
     }
 
@@ -69,7 +74,7 @@ public class GreedyPlus {
                             Double y1 = robots.get(j).getPosition().getY();
                             Double x2 = robots.get(i).getPosition().getX();
                             Double y2 = robots.get(i).getPosition().getY();
-                            Double d = getLineDist(pathFinder,i,j,robots.get(i).distanceAcquiredSinceLastJump);
+                            Double d = getLineDist(x1,x2,y1,y2,robots.get(i).distanceAcquiredSinceLastJump);
                             // Only update dist if its shorter path
                             if(d < robots.get(i).remainingDistanceToClosestTarget){
                                 robots.get(i).remainingDistanceToClosestTarget = d;
@@ -174,9 +179,9 @@ public class GreedyPlus {
 //            System.out.println("X: "+r.getPosition().getX() + " Y: " + r.getPosition().getY());
 //        }
 
-//        for(Integer i : s){
-//            System.out.print(i + " ");
-//        }
+        for(Integer i : s){
+            System.out.print(i + " ");
+        }
 
         return movementSchedule;
     }

@@ -27,25 +27,24 @@ public class Output {
                     Robot bot2 = robots.get(visitList.get(0));
                     sb.append(getCoords(bot2.getPosition().getX(), bot2.getPosition().getY()));
                 }else{
-                    // Simply append bot2 if there are no obstacles
-//                    if(obstacles.size() == 0){
-//                        bot2 = robots.get(visitList.get());
-//                        sb.append(getCoords(bot2.getPosition().getX(), bot2.getPosition().getY()));
-//                    }
                     for (int j = 0; j < visitList.size()-1; j++) {
                         // getPath(j,j+1) and convert them to string
-                        Robot bot2 = robots.get(visitList.get(j));
-                        sb.append(getCoords(bot2.getPosition().getX(), bot2.getPosition().getY()));
-                        sb.append(", ");
+                        Robot bot2;
+                        if(j < 1){
+                            bot2 = robots.get(visitList.get(j));
+                            sb.append(getCoords(bot2.getPosition().getX(), bot2.getPosition().getY()));
+                            sb.append(", ");
+                        }
                         obsPts = pathFinder.getPath(visitList.get(j),visitList.get(j+1));
                         System.out.println("Obstacles from robot " + visitList.get(j) + " and " + visitList.get(j+1) + " are " + obsPts);
                         obsPath = coordsToString(obsPts);
                         sb.append(obsPath);
                         bot2 = robots.get(visitList.get(j+1));
                         sb.append(getCoords(bot2.getPosition().getX(), bot2.getPosition().getY()));
-//                        if(j > 0){
-//                            sb.append(", ");
-//                        }
+                        // append commas for the next iterations
+                        if(j+1 < (visitList.size()-1)){
+                            sb.append(", ");
+                        }
                     }
                 }
             }
