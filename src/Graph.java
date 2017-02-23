@@ -54,7 +54,7 @@ public class Graph {
     }
 
     // Allows addition of Start Robot Node and End Robot Node
-    synchronized public void addRobotNodes(Point2D robotStartPosition, Point2D robotEndPosition) {
+    public void addRobotNodes(Point2D robotStartPosition, Point2D robotEndPosition) {
         robotStart = createNode(robotStartPosition);
         robotEnd = createNode(robotEndPosition);
         nodes.add(0, robotStart);
@@ -80,7 +80,7 @@ public class Graph {
         }
     }
 
-    synchronized public void removeRobotNodes() {
+    public void removeRobotNodes() {
         // TODO: Add parameters and function body
         // Remove rs and re from arraylist of nodes.
         nodes.remove(robotStart);
@@ -185,7 +185,6 @@ public class Graph {
                 return cp;
             }
         }
-        System.out.println("Cannot get coordinate via value");
         return null;
     }
 
@@ -238,6 +237,55 @@ public class Graph {
         Point2D s = start.getCoordinates();
         Point2D e = end.getCoordinates();
         return Point2D.distance(s.getX(), s.getY(), e.getX(), e.getY());
+    }
+
+    private ArrayList<Graph_Dijkstra.Edge> generateDijkstraGraph() {
+        // Create ArrayList<Graph_Dijkstra.Edge> by iterating over nodes and its edges with weights
+        ArrayList<Graph_Dijkstra.Edge> dEdges = new ArrayList<>();
+        for (int i = 0; i < nodes.size(); i++) {
+            Node n = nodes.get(i);
+            Point2D p = n.getCoordinates();
+            // append to Edge[]
+            ArrayList<Edge> edges = n.getEdges();
+            for (Edge e: edges) {
+                dEdges.add(new Graph_Dijkstra.Edge(i, nodes.indexOf(e.getEnd()), p, e.getEnd().getCoordinates(), e.getWeight()));
+            }
+        }
+        return dEdges;
+    }
+
+    public double getDistance(Robot r1, Robot r2) {
+        Point2D p1 = r1.getPosition();
+        Point2D p2 = r2.getPosition();
+        addRobotNodes(p1, p2);
+
+        ArrayList<Graph_Dijkstra.Edge> dEdges = generateDijkstraGraph();
+
+        Graph_Dijkstra g = new Graph_Dijkstra(dEdges);
+        g.dijkstra(p1);
+        g.printPath(p2);
+        double distance = g.returnDistance(p2);
+
+        removeRobotNodes();
+
+        return distance;
+    }
+
+    public ArrayList<Point2D> getPath(Robot r1, Robot r2) {
+        Point2D p1 = r1.getPosition();
+        Point2D p2 = r2.getPosition();
+        addRobotNodes(p1, p2);
+
+        ArrayList<Graph_Dijkstra.Edge> dEdges = generateDijkstraGraph();
+
+        Graph_Dijkstra g = new Graph_Dijkstra(dEdges);
+        g.dijkstra(p1);
+        g.printPath(p2);
+        ArrayList<Point2D> path = g.returnPath(p2);
+
+        removeRobotNodes();
+
+        return path;
     }
 
 }
