@@ -11,11 +11,11 @@ public class Main {
     final static String INPUT_FILE = "robots.mat.txt";
 
     // Fill in the problem number to attempt here.
-    final static int INSTANCE_NUMBER = 2;
+    final static int INSTANCE_NUMBER = 10;
 
     public static void main(String[] args) {
         ArrayList<Instance> instances = new Instantiator().getInstances(INPUT_FILE);
-        Instance testInstance = instances.get(0);
+        Instance testInstance = instances.get(INSTANCE_NUMBER - 1);
         ArrayList<Robot> robots = testInstance.getRobots();
         ArrayList<Obstacle> obstacles = testInstance.getObstacles();
         //PathFinder pathFinder = new PathFinder(1,robots,obstacles);
