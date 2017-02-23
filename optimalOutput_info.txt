@@ -17,23 +17,23 @@ OK | No | Time      | Best      | Remarks
  Y | 11 | 16.762    | 16.762    | BEST (lindworm)
  Y | 12 | 22.468    | 22.468    | BEST (lindworm)
  Y | 13 | N/A       |           |
-   | 14 | 24.655    | 26.065    | BEST (rusalka)
+ Y | 14 | 24.655    | 24.565    | SECOND BEST (qilin)
    | 15 | 20.001    | 17.704    | (lindworm)
- Y | 16 | 17.718    | 17.718    | BEST (lindworm)
-   | 17 | N/A       |           |
- Y | 18 | 18.361    | 18.361    | BEST (lindworm)
-   | 19 | N/A       |           |
- Y | 20 | 26.749    | 26.749    | BEST (lindworm)
-   | 21 | N/A       |           |
+   | 16 | 19.716    | 17.718    | (lindworm)
+ Y | 17 | 18.4      | 18.4      | BEST (lindworm)
+   | 18 | 18.794    | 18.361    | (lindworm)
+ Y | 19 | 20.615    | 20.615    | BEST (lindworm)
+   | 20 | 29.524    | 26.749    | (lindworm)
+ Y | 21 | 99.764    | 99.764    | BEST (lindworm)
    | 22 | N/A       |           |
-   | 23 | N/A       |           |
+ Y | 23 | 204.296   | 204.296   | BEST (lindworm)
    | 24 | N/A       |           |
-   | 25 | N/A       |           |
+ Y | 25 | 352.793   | 352.793   | BEST (lindworm)
    | 26 | N/A       |           |
-   | 27 | N/A       |           |
+ Y | 27 | 103.198   | 103.198   | BEST (lindworm)
    | 28 | N/A       |           |
-   | 29 | N/A       |           |
-   | 30 | N/A       |           |
+ Y | 29 | 103.219   | 103.219   | BEST (lindworm)
+ Y | 30 | 77.054    | 77.054    | BEST (lindworm)
 
 
 -------------------
