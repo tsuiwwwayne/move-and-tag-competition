@@ -30,6 +30,7 @@ public class GreedyCRDAlgo {
         }
 
         // Populate target list
+        int awokenRobots = 0;
         for (int x = 1; x < robots.size(); x++) {
             // Calculate distance to nearest robot for all awake robots
             for(int i = 0; i < robots.size(); i++){
@@ -80,12 +81,7 @@ public class GreedyCRDAlgo {
 
             // update newly awakened robot
             robots.get(robots.get(nextRobotToReachTarget).closest).status = Robot.Status.AWAKE;
-            int awokenRobots = 0;
-            for(GreedyRobot r : robots){
-                if(r.status == Robot.Status.AWAKE){
-                    awokenRobots++;
-                }
-            }
+            awokenRobots++;
             System.out.println("Number of robots awoken: " + awokenRobots + " out of " + robots.size() + " robots.");
         }
         return movementSchedule;
