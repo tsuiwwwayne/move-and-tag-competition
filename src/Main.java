@@ -10,7 +10,7 @@ public class Main {
     final static String INPUT_FILE = "robots.mat.txt";
 
     // Fill in the problem number to attempt here.
-    static int INSTANCE_NUMBER = 1;
+    static int INSTANCE_NUMBER = 29;
 
     public static void main(String[] args) {
         if (args.length > 0) {
@@ -57,14 +57,28 @@ public class Main {
         // Generate visibility graph (comment out unless required)
         //VisGraphGenerator.generate(instance);
 
-        // Wayne's Testing Corner;
-        Graph g = new Graph(instance);
-        ArrayList<Point2D> path = g.getPath(0, 1);
-        for (Point2D p: path) {
-            System.out.print("VISITED NODES IN ORDER: " + p);
-        }
-        System.out.println();
-        double distance = g.getDistance(0, 1);
-        System.out.println("DISTANCE:  " + distance);
+        // ----------------
+        // Wayne's Testing Corner
+        // ----------------
+//        Graph g = new Graph(instance);
+//        ArrayList<Point2D> path = g.getPath(0, 1);
+//        for (Point2D p: path) {
+//            System.out.print("VISITED NODES IN ORDER: " + p);
+//        }
+//        System.out.println();
+//        double distance = g.getDistance(0, 1);
+//        System.out.println("DISTANCE:  " + distance);
+
+        // Check Nodes that have line of sight via Coordinates
+//        int index = g.getNodeIndexViaDoubles(9.693092833894978, -2.1132276868488913);
+//        int index = g.getNodeIndexViaDoubles(11.160112254556559, 4.731321532741966);
+//        int index = g.getNodeIndexViaDoubles(0.0, 0.0);
+//        Node n = g.getNodes().get(index);
+//        System.out.println("host node is: " + n.getCoordinates());
+//        ArrayList<Edge> edges3 = n.getEdges();
+//        for (Edge e: edges3) {
+//        System.out.println(e.getEnd().getCoordinates());
+//        System.out.println(e.getWeight());
+//        }
     }
 }
