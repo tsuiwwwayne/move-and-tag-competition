@@ -11,7 +11,7 @@ public class Main {
     final static String INPUT_FILE = "robots.mat.txt";
 
     // Fill in the problem number to attempt here.
-    final static int INSTANCE_NUMBER = 1;
+    final static int INSTANCE_NUMBER = 2;
 
     public static void main(String[] args) {
         ArrayList<Instance> instances = new Instantiator().getInstances(INPUT_FILE);

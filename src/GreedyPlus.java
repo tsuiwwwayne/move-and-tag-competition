@@ -32,7 +32,7 @@ public class GreedyPlus {
     }
 
     // Main Algorithm
-    public Map<Integer, List<Integer>> greedyPlus(ArrayList<Robot> robot, PathFinder pathFinder){
+    public Map<Integer, List<Integer>> greedyPlus(ArrayList<Robot> robot, Graph graph){
         ArrayList<GreedyRobot> robots = new ArrayList<GreedyRobot>();
         // Make a copy of robots
         for(Robot r : robot){
