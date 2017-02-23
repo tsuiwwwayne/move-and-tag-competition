@@ -51,7 +51,7 @@ public class GreedyCRDAlgo {
                     // Count distance of all sleeping robots from the current awake robot
                     for(int j = 0; j < robots.size(); j++){
                         if (robots.get(j).status == Robot.Status.ASLEEP) {
-                            double d = pathFinder.getDistance(robots.get(i).currentPositionIndex, j) - robots.get(i).distanceAcquiredSinceLastJump;
+                            double d = pathFinder.getDistance(robots.get(i).currentPositionIndex, robots.get(j).currentPositionIndex) - robots.get(i).distanceAcquiredSinceLastJump;
                             // Only update dist if its shorter path
                             if(d < robots.get(i).remainingDistanceToClosestTarget){
                                 robots.get(i).remainingDistanceToClosestTarget = d;
