@@ -10,15 +10,10 @@ public class Main {
     final static String PASSWORD = "usrdoupjm8q94i7td9qctue39k";
     final static String INPUT_FILE = "robots.mat.txt";
 
-    private static String removeTrailingZeros(double d) {
-        return String.valueOf(d).replaceAll("[0]*$", "").replaceAll("\\.$", "");
-    }
+    // Fill in the problem number to attempt here.
+    final static int INSTANCE_NUMBER = 1;
 
     public static void main(String[] args) {
-
-        /*
-        * Trying it out
-        * */
         ArrayList<Instance> instances = new Instantiator().getInstances(INPUT_FILE);
         Instance testInstance = instances.get(5);
         ArrayList<Robot> robots = testInstance.getRobots();
