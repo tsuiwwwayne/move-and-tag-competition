@@ -10,7 +10,7 @@ public class Main {
     final static String INPUT_FILE = "robots.mat.txt";
 
     // Fill in the problem number to attempt here.
-    static int INSTANCE_NUMBER = 8;
+    static int INSTANCE_NUMBER = 12;
 
     public static void main(String[] args) {
         if (args.length > 0) {
