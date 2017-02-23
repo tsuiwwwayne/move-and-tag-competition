@@ -22,16 +22,22 @@ public class SymmetricMatrixPath {
      */
     public SymmetricMatrixPath(int n) {
         matrix = new ArrayList<>(n);
+        // Create columns
         for (int i=0; i<n; i++) {
             matrix.add(i, new ArrayList<>(n));
-            /*ArrayList<ArrayList<Point2D>> inner = matrix.get(i);
-            inner = new ArrayList<>(n);*/
 
+            // Create the path array
             for (int j=0; j<n; j++) {
-                matrix.get(i).add(new ArrayList<>());
-                /*ArrayList<Point2D> pathArray = inner.get(j);
-                pathArray = new ArrayList<>(n);*/
+                matrix.get(i).add(null);
             }
+        }
+    }
+
+    public void set( int row, int col, ArrayList<Point2D> path) {
+        if (row < col) {
+            matrix.get(row).set(col, path);
+        } else {
+            matrix.get(col).set(row, path);
         }
     }
 
@@ -44,6 +50,7 @@ public class SymmetricMatrixPath {
 
     /**
      * Returns the path at position (row,col).
+     * Returns null if not found.
      */
     public ArrayList<Point2D> getPath( int row, int col ) {
         ArrayList<Point2D> path;
@@ -53,6 +60,7 @@ public class SymmetricMatrixPath {
             return path;
         } else {
             path = matrix.get(col).get(row);
+            if (path == null) return null;
             // Shallow clone array and reverse the path.
             ArrayList<Point2D> reversePath = (ArrayList<Point2D>) path.clone();
             Collections.reverse(reversePath);

@@ -14,9 +14,9 @@ OK | No | Time      | Best      | Remarks
  Y | 08 | 530.749   | 530.749   | BEST (lindworm)
    | 09 | 366.46    | 350.572   | (lindworm)
    | 10 | 434.402   | 406.496   | (lindworm)
-   | 11 | 16.967    | 16.762    | Close (lindworm)
-   | 12 | N/A       |           |
-   | 13 | N/A       |           |
+ Y | 11 | 16.762    | 16.762    | BEST (lindworm)
+ Y | 12 | 17.114    | 17.114    | BEST (lindworm)
+ Y | 13 | N/A       |           |
    | 14 | 26.065    | 24.565    | (qilin)
    | 15 | 20.001    | 17.704    | (lindworm)
    | 16 | 19.716    | 17.718    | (lindworm)
