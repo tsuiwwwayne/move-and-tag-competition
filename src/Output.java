@@ -20,7 +20,7 @@ public class Output {
                 sb.append(", ");
                 ArrayList<Point2D> obsPts = g.getPath(i,visitList.get(0));
                 String obsPath = coordsToString(obsPts);// generate path string
-                System.out.println("Obstacles from robot " + i + " and " + visitList.get(0) + " are " + obsPts);
+                //System.out.println("Obstacles from robot " + i + " and " + visitList.get(0) + " are " + obsPts);
                 sb.append(obsPath);
                 if(visitList.size() == 1){
                     //System.out.println("one");
@@ -36,7 +36,7 @@ public class Output {
                             sb.append(", ");
                         }
                         obsPts = g.getPath(visitList.get(j),visitList.get(j+1));
-                        System.out.println("Obstacles from robot " + visitList.get(j) + " and " + visitList.get(j+1) + " are " + obsPts);
+                        //System.out.println("Obstacles from robot " + visitList.get(j) + " and " + visitList.get(j+1) + " are " + obsPts);
                         obsPath = coordsToString(obsPts);
                         sb.append(obsPath);
                         bot2 = robots.get(visitList.get(j+1));

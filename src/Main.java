@@ -1,3 +1,4 @@
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +10,7 @@ public class Main {
     final static String INPUT_FILE = "robots.mat.txt";
 
     // Fill in the problem number to attempt here.
-    static int INSTANCE_NUMBER = 1;
+    static int INSTANCE_NUMBER = 8;
 
     public static void main(String[] args) {
         if (args.length > 0) {
