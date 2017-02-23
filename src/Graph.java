@@ -17,12 +17,20 @@ public class Graph {
     private Node robotStart;
     private Node robotEnd;
 
+    // Lookup table - this caches saved paths so that they do not need to be re-computed.
+    private SymmetricMatrixPath cachedPaths;
+    private SymmetricMatrix cachedDistances;
+
     public Graph(Instance instance) {
         this.robots = instance.getRobots();
         this.obstacles = instance.getObstacles();
         this.nodes = createNodes(obstacles);
         this.allCoordinatePairs = generateAllCoordinatesPairs(obstacles);
         this.paths = generatePaths(obstacles);
+
+        cachedPaths = new SymmetricMatrixPath(this.robots.size());
+        cachedDistances = new SymmetricMatrix(this.robots.size());
+
         populateNodes(nodes, obstacles);
     }
 
@@ -283,6 +291,13 @@ public class Graph {
     }
 
     public double getDistance(int r1, int r2) {
+        // If in cache, return value. Otherwise, compute.
+        double cachedDistance = cachedDistances.get(r1, r2);
+        if (cachedDistance != 0) {
+            //System.out.println("Retrieving from cache.");
+            return cachedDistance;
+        }
+
         Robot start = robots.get(r1);
         Robot end = robots.get(r2);
         Point2D p1 = start.getPosition();
@@ -298,10 +313,19 @@ public class Graph {
 
         removeRobotNodes();
 
+        cachedDistances.set(r1, r2, distance);
+
         return distance;
     }
 
     public ArrayList<Point2D> getPath(int r1, int r2) {
+        // If in cache, return value. Otherwise, compute.
+        ArrayList<Point2D> cachedPath = cachedPaths.getPath(r1, r2);
+        if (cachedPath != null) {
+            //System.out.println("Retrieving from cache.");
+            return cachedPath;
+        }
+
         Robot start = robots.get(r1);
         Robot end = robots.get(r2);
         Point2D p1 = start.getPosition();
@@ -316,6 +340,8 @@ public class Graph {
         ArrayList<Point2D> path = g.returnPath(p2);
 
         removeRobotNodes();
+
+        cachedPaths.set(r1, r2, path);
 
         return path;
     }
