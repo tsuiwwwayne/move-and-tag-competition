@@ -155,6 +155,8 @@ public class Graph {
         for (Node n: nodes) {
             populateNode(n, nodes, obstacles);
         }
+        // TEST METHOD - PURGE EDGES
+
     }
 
     /*
@@ -181,6 +183,18 @@ public class Graph {
         return null;
     }
 
+    public int getNodeIndexViaDoubles(double d1, double d2) {
+        for (int i = 0; i < nodes.size(); i++) {
+            double p1 = nodes.get(i).getCoordinates().getX();
+            double p2 = nodes.get(i).getCoordinates().getY();
+            if (Double.compare(d1, p1) == 0 && Double.compare(d2, p2) == 0) {
+                return i;
+            }
+        }
+        System.out.println("CANNOT FIND INDEX VIA DOUBLES D1 AND D2");
+        return -1;
+    }
+
     private Point2D[] getCoordinatePairByValues(Point2D p1, Point2D p2) {
         for (Point2D[] cp: allCoordinatePairs) {
             if ((cp[0].equals(p1) && cp[1].equals(p2)) || (cp[0].equals(p2) && cp[1].equals(p1))) {
@@ -197,7 +211,7 @@ public class Graph {
             return false;
         }
         for (Path2D p: paths) {
-            if (p.contains(midpoint(s, e)) && (!(allCoordinatePairs.contains(getCoordinatePairByValues(s, e))))) {
+            if ((p.contains(midpoint(s, e)) || p.contains(slightStart(s, e)) || p.contains(slightEnd(s, e))) && (!(allCoordinatePairs.contains(getCoordinatePairByValues(s, e))))) {
                 return false;
             }
         }
@@ -235,6 +249,18 @@ public class Graph {
         return new Point2D.Double((p1.getX() + p2.getX())/2.0, (p1.getY()+p2.getY())/2.0);
     }
 
+    private Point2D slightStart(Point2D p1, Point2D p2) {
+        double slightStartX = (p2.getX() - p1.getX()) * 0.1;
+        double slightStartY = (p2.getY() - p1.getY()) * 0.1;
+        return new Point2D.Double(p1.getX() + slightStartX, p1.getY() + slightStartY);
+    }
+
+    private Point2D slightEnd(Point2D p1, Point2D p2) {
+        double slightStartX = (p2.getX() - p1.getX()) * 0.9;
+        double slightStartY = (p2.getY() - p1.getY()) * 0.9;
+        return new Point2D.Double(p1.getX() + slightStartX, p1.getY() + slightStartY);
+    }
+
     private double calculateWeightBetweenNodes(Node start, Node end) {
         Point2D s = start.getCoordinates();
         Point2D e = end.getCoordinates();
@@ -267,7 +293,7 @@ public class Graph {
 
         Graph_Dijkstra g = new Graph_Dijkstra(dEdges);
         g.dijkstra(p1);
-        g.printPath(p2);
+        //g.printPath(p2);
         double distance = g.returnDistance(p2);
 
         removeRobotNodes();
@@ -286,7 +312,7 @@ public class Graph {
 
         Graph_Dijkstra g = new Graph_Dijkstra(dEdges);
         g.dijkstra(p1);
-        g.printPath(p2);
+        //g.printPath(p2);
         ArrayList<Point2D> path = g.returnPath(p2);
 
         removeRobotNodes();

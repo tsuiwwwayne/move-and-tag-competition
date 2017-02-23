@@ -17,6 +17,9 @@ public class Robot {
         this.status = Status.ASLEEP;
     }
 
+    // default constructor
+    public Robot(){}
+
     public Point2D getPosition() {
         return position;
     }

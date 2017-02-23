@@ -39,6 +39,8 @@ public class GreedyCRDAlgo {
             movementSchedule.put(i, new ArrayList<Integer>());
         }
 
+        // Populate target list
+        int awokenRobots = 0;
         for (int x = 1; x < robots.size(); x++) {
             // Calculate distance to nearest robot for all awake robots
             for(int i = 0; i < robots.size(); i++){
@@ -95,11 +97,13 @@ public class GreedyCRDAlgo {
             // update newly awakened robot
             robots.get(robots.get(nextRobotToReachTarget).closest).status = Robot.Status.AWAKE;
 
+            awokenRobots++;
+            System.out.println("Number of robots awoken: " + awokenRobots + " out of " + robots.size() + " robots.");
+
             // A robot has been awakened - the next iteration will check whether we have a new closest robot to robots that have been claimed but not reached.
             // If there's a new closest robot, reset the original robot to its last position (not necessarily the start!),
             // Unset its 'closest' and 'remainingDistanceToClosestTarget' parameters,
             // Then set the above parameters for the new closest robot.
-
         }
         return movementSchedule;
     }
