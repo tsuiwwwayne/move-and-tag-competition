@@ -13,9 +13,9 @@ OK | No | Time      | Best      | Remarks
  X | 07 | 272.513   | 272.513   | OPTIMAL (guaranteed - two points)
  Y | 08 | 530.749   | 530.749   | BEST (lindworm)
    | 09 | 366.46    | 350.572   | (lindworm)
-   | 10 | 434.402   | 406.496   | (lindworm)
+   | 10 | 406.496   | 406.496   | (lindworm)
  Y | 11 | 16.762    | 16.762    | BEST (lindworm)
- Y | 12 | 17.114    | 17.114    | BEST (lindworm)
+ Y | 12 | 22.468    | 22.468    | BEST (lindworm)
  Y | 13 | N/A       |           |
  Y | 14 | 24.655    | 24.565    | SECOND BEST (qilin)
    | 15 | 20.001    | 17.704    | (lindworm)
