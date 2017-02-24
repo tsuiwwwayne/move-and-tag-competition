@@ -43,7 +43,8 @@ public class GreedyCRDAlgo {
         int[] manualOptimizationList = new int[5];
 
         // Populate target list
-        int awokenRobots = 0;
+        int awokenRobots = 1;
+        System.out.println("Initialising robot 1 to be awake...");
         for (int x = 1; x < robots.size(); x++) {
             // Calculate distance to nearest robot for all awake robots
             for(int i = 0; i < robots.size(); i++){

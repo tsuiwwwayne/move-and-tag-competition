@@ -91,7 +91,6 @@ public class Graph {
     }
 
     public void removeRobotNodes() {
-        // TODO: Add parameters and function body
         // Remove rs and re from arraylist of nodes.
         nodes.remove(robotStart);
         nodes.remove(robotEnd);
@@ -117,11 +116,6 @@ public class Graph {
                 iterator.remove();
             }
         }
-//        for (Edge e: edges) {
-//            if (e.getEnd().equals(n1)) {
-//                edges.remove(e);
-//            }
-//        }
     }
 
     private ArrayList<Point2D[]> generateAllCoordinatesPairs(ArrayList<Obstacle> obstacles) {
@@ -163,8 +157,6 @@ public class Graph {
         for (Node n: nodes) {
             populateNode(n, nodes, obstacles);
         }
-        // TEST METHOD - PURGE EDGES
-
     }
 
     /*
@@ -236,21 +228,6 @@ public class Graph {
             return false;
         }
         return Line2D.linesIntersect(a.getX(), a.getY(), b.getX(), b.getY(), c.getX(), c.getY(), d.getX(), d.getY());
-//        double denominator = ((b.getX() - a.getX()) * (d.getY() - c.getY())) - ((b.getY() - a.getY()) * (d.getX() - c.getX()));
-//        if (denominator == 0) {
-//            return false;
-//        }
-//        double numerator1 = ((a.getY() - c.getY()) * (d.getX() - c.getX())) - ((a.getX() - c.getX()) * (d.getY() - c.getY()));
-//        double numerator2 = ((a.getY() - c.getY()) * (b.getX() - a.getX())) - ((a.getX() - c.getX()) * (b.getY() - a.getY()));
-//
-//        if (numerator1 == 0 || numerator2 == 0) {
-//            return false;
-//        }
-//
-//        double r = numerator1/denominator;
-//        double s = numerator2/denominator;
-//
-//        return (r > 0 && r < 1) && (s > 0 && s < 1);
     }
 
     private Point2D midpoint(Point2D p1, Point2D p2) {
