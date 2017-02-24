@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!--Bootstrap-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -15,276 +16,25 @@
                 alert('The File APIs are not fully supported in this browser.');
             }
         </script>
+        <script type="text/javascript" src="assets/js/visualiser.js"></script>
+
     </head>
 
+
 <body>
-    <div class="container">
-        <br>
-        <div class="search-panel">
-            <input type="text" id="inputTextbox" value="1" onchange="">
-            <button onclick="drawDiagram()">Refresh</button>       
-            <button onclick="drawPrev()">Prev</button>       
-            <button onclick="drawNext()">Next</button>       
-        </div>
-        <textarea class="answer-panel" id="ansTextbox"></textarea>
-        <button class="run-btn" onclick="drawPath()">Run</button>
 
-        <input class="file-picker" type="file" id="fileInput">
-    </div>  
-    
-    <canvas id="canvas"></canvas>
+<div class="container">
+    <br>
+    <input type="text" id="caseSelectedInput">
+    <button onclick="drawMap()">Refresh</button>       
+    <button onclick="drawPrev()">Prev</button>       
+    <button onclick="drawNext()">Next</button>    
+</div>
 
+<input class="file-picker" type="file" id="fileInput">
+<input class="solution-picker" type="file" id="solutionInput">
+<br><br>
+<canvas id="canvas"></canvas>
 
-<script type="text/javascript">
-
-        var inputFile;
-        var fileInput = document.getElementById('fileInput');
-        var inputTextbox = document.getElementById('inputTextbox');
-        var ansTextbox = document.getElementById('ansTextbox');
-        var canvas = document.getElementById('canvas');
-
-        var scalingFactor = 1.0;
-        var maxPosX=0, minPosX=0, maxPosY=0, minPosY=0;
-    
-        var robotString=[], obstacleString=[], paths=[];
-
-
-        function drawPrev() {
-            inputTextbox.value--;
-            if(inputTextbox.value<1) 
-                inputTextbox.value = 1;
-            drawDiagram();
-        }
-
-        function drawNext() {
-            inputTextbox.value++;
-            if( inputTextbox.value > 30) 
-                inputTextbox.value = 30;
-            drawDiagram();
-        }
-
-        function drawDiagram(){
-            var index = inputTextbox.value -1;
-
-            var regExp = /\(([+-]?([0-9]*[.])?[0-9]+),([+-]?([0-9]*[.])?[0-9]+)\)/g; 
-            calculateMaxMinPts(index);
-            calculateScalingFactor();
-            
-            var ctx = canvas.getContext('2d'); 
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            resizeCanvas();
-
-
-            // After calling this function, robotString[] and obstacleString[] should then contain a string of Pts "(x1, y1), (x2, y2)..." for Q1-Q30
-            splitInputString();
-            //show(robotString);
-            //show(obstacleString);
-
-            // First draw robots
-            var robots = robotString[index].match(regExp);
-            for(var i=0; i<robots.length; i++){
-                drawRobot(robots[i]);
-            }
-            //show(robots);
-
-            // Then draw obstacles 
-            if(obstacleString[index].length>0){
-                var obstacles = obstacleString[index].split(';');
-                for(var i=0; i<obstacles.length; i++){
-                    drawObstacle(obstacles[i]);
-                }
-                //show(obstacles);                
-            }
-        }
-
-
-        function drawPath(){
-            var ansString = ansTextbox.value;
-            ansString = removeWhiteSpace(ansString)
-
-            var paths = ansString.split(';');
-            for(var i=0; i<paths.length; i++){
-                drawLine(paths[i]);
-            }
-            //show(paths);
-        }
-
-        
-        function drawLine(path){
-            var regExp = /\(([+-]?([0-9]*[.])?[0-9]+),([+-]?([0-9]*[.])?[0-9]+)\)/g; 
-            var ctx = canvas.getContext('2d'); 
-
-            var points = path.match(regExp);
-            var ptsX=[], ptsY=[];
-            
-            // Remove parenthesis
-            for(var i=0; i<points.length; i++){
-                points[i] = points[i].slice(1,-1);
-
-                var split = points[i].split(',');
-                ptsX.push(parseFloat(split[0]));
-                ptsY.push(parseFloat(split[1]));
-            }
-
-            ctx.beginPath();
-            ctx.moveTo((ptsX[0] - minPosX)*scalingFactor +10, (ptsY[0] - minPosY)*scalingFactor +10);
-            for(var i=1; i<points.length; i++){
-                ctx.lineTo((ptsX[i] - minPosX)*scalingFactor +10, (ptsY[i] - minPosY)*scalingFactor +10)
-            }
-            //ctx.strokeStyle =  "#"+((1<<24)*Math.random()|0).toString(16);
-            ctx.strokeStyle =  'red';
-            ctx.stroke();
-            ctx.closePath();
-
-
-            // Draw robot end-position
-            var radius = 6;
-            ctx.beginPath();
-            ctx.arc((ptsX[points.length-1] - minPosX)*scalingFactor +10, (ptsY[points.length-1] - minPosY)*scalingFactor +10, radius, 0, 2 * Math.PI, false);
-
-            ctx.lineWidth = 3;
-            ctx.fillStyle = 'blue';
-            ctx.fill();  
-            ctx.closePath();
-        }
-
-
-        function drawObstacle(obstacle){
-            var regExp = /\(([+-]?([0-9]*[.])?[0-9]+),([+-]?([0-9]*[.])?[0-9]+)\)/g; 
-            var ctx = canvas.getContext('2d'); 
-
-            var points = obstacle.match(regExp);
-            var ptsX=[], ptsY=[];
-
-            // Remove parenthesis
-            for(var i=0; i<points.length; i++){
-                points[i] = points[i].slice(1,-1);
-
-                var split = points[i].split(',');
-                ptsX.push(parseFloat(split[0]));
-                ptsY.push(parseFloat(split[1]));
-            }
-
-            ctx.beginPath();
-            ctx.moveTo((ptsX[0] - minPosX)*scalingFactor +10, (ptsY[0] - minPosY)*scalingFactor +10);
-            for(var i=1; i<points.length; i++){
-                ctx.lineTo((ptsX[i] - minPosX)*scalingFactor +10, (ptsY[i] - minPosY)*scalingFactor+10)
-            }
-            ctx.fillStyle = '#2ecc71';
-            ctx.fill();
-            ctx.closePath();
-        }
-
-        function drawRobot(pts){
-            var ctx = canvas.getContext('2d'); 
-            // Remove parenthesis
-            pts = pts.slice(1,-1);
-            var split = pts.split(',');
-            var ptsX = parseFloat(split[0]);
-            var ptsY = parseFloat(split[1]);
-            //show("point read - " + ptsX + ',' + ptsY);
-
-
-            var radius = 5;
-            ctx.beginPath();
-            ctx.arc((ptsX - minPosX)*scalingFactor +10, (ptsY - minPosY)*scalingFactor +10, radius, 0, 2 * Math.PI, false);
-            //show("point resized to - " + (ptsX - minPosX)*scalingFactor + ',' + (ptsY - minPosY)*scalingFactor);
-
-            ctx.lineWidth = 3;
-            ctx.strokeStyle = '#black';
-            ctx.stroke();  
-            ctx.closePath();
-        }
-
-
-        function resizeCanvas(){
-            var ctx = canvas.getContext('2d'); 
-            ctx.canvas.width = window.innerWidth*0.8 + 20;
-            ctx.canvas.height = ctx.canvas.width + 20;
-        }
-
-        // This should only be called after calculateMaxMinPts()
-        function calculateScalingFactor(){
-            if(maxPosY-minPosY >= maxPosX-minPosX){
-                scalingFactor = window.innerWidth*0.8/(maxPosY-minPosY);
-
-            }else if(maxPosY-minPosY < maxPosX-minPosX){
-                scalingFactor = window.innerWidth*0.8/(maxPosX-minPosX);
-            }
-            //show("scaling factor - " + scalingFactor);
-        }
-
-        function calculateMaxMinPts(index){
-            var regExp = /\(([+-]?([0-9]*[.])?[0-9]+),([+-]?([0-9]*[.])?[0-9]+)\)/g; 
-            var allPoints = inputFile[index].match(regExp);
-            //show(allPoints);
-
-            maxPosX=0; minPosX=0; maxPosY=0; minPosY=0;
-            for(var i=0; i<allPoints.length; i++){
-                // Remove the parenthesis
-                allPoints[i] = allPoints[i].slice(1,-1);
-                var point = allPoints[i].split(',');
-
-                var ptX = parseFloat(point[0]);
-                var ptY = parseFloat(point[1]);
-
-                // Find max and min values
-                if(ptX > maxPosX) maxPosX = ptX;
-                if(ptX < minPosX) minPosX = ptX;
-                if(ptY > maxPosY) maxPosY = ptY;
-                if(ptY < minPosY) minPosY = ptY;
-            }
-
-            //show("maximum pts - " + maxPosX + ',' + maxPosY);
-            //show("minimum pts - " + minPosX + ',' + minPosY);
-        }
-
-
-        // render the text file
-        fileInput.addEventListener('change', function(e){
-            var file = fileInput.files[0];
-            var textType = /text.*/;
-            if(file.type.match(textType)){
-
-                var reader = new FileReader();
-                reader.onload = function(e){
-                    inputFile = splitNewline(removeWhiteSpace(reader.result));
-                    drawDiagram();
-                }
-                reader.readAsText(file);
-            } else{
-                alert("File not supported!");
-            }
-        });
-
-        function splitInputString(){
-            for(var i=0; i<inputFile.length; i++){
-                var splitted = inputFile[i].split('#');
-                robotString.push(splitted[0]);
-                if(splitted.length>1){
-                    obstacleString.push(splitted[1]);
-                }else{
-                    obstacleString.push("");
-                }
-            }
-            //show(robots);
-            //show(obstacles);
-        }
-
-        function show(string){
-            console.log(string);
-        }
-
-        function removeWhiteSpace(string){
-            string = string.replace(/ /g, '');
-            return string;
-        }
-
-        function splitNewline(string){
-            string = string.split("\n");
-            return string;
-        }
-
-    </script>
 </body>
 </html>
