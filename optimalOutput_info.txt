@@ -22,17 +22,17 @@ OK | No | Time      | Best      | Remarks
  ! | 16 | 17.862    | 17.718    | (lindworm) (3 -> 17)
  * | 17 | 16.541    | 18.4      | BEST!!!!!!! (id = 166 -> 138)
  * | 18 | 18.092    | 18.361    | BEST!!!!!!! (id = 43 -> 47 then 120)
- * | 19 | 17.594    | 19.529    | BEST!!!!!!! (id = 0 -> 106, id = 199 -> 157) (other best by rusalka)
+ * | 19 | 17.594    | 19.529    | BEST!!!!!!! (id = 0 -> 106, id = 199 -> 157) (next best by rusalka)
  ! | 20 | 27.03     | 26.749    | CLOSE (lindworm) (id = 147 -> 186)
  * | 21 | 96.365    | 97.188    | BEST!!!!!!! (id = 227 -> 191)
-   | 22 | N/A       |           |
- Y | 23 | 204.296   | 204.296   | BEST (lindworm)
+ * | 22 | 231.801   | 231.996   | BEST!!!!!!! (id = 221 -> 161)
+ ! | 23 | 204.189   | 199.271   | not good enough.... (id = 99 -> 25)
  Y | 24 | 279.416   | 279.191   | BEST (lindworm)
- Y | 25 | 352.793   | 352.793   | BEST (lindworm)
+ * | 25 | 304.875   | 349.571   | BEST!!!!!!! (id = 0 -> 150)
    | 26 | N/A       |           |
  Y | 27 | 103.198   | 103.198   | BEST (lindworm)
    | 28 | 111.567   | 111.567   | BEST (lindworm)
- Y | 29 | 103.219   | 103.219   | BEST (lindworm)
+ * | 29 | 102.024   | 103.219   | BEST!!!!!!! (id = 0 -> 137 -> 109)
  Y | 30 | 77.054    | 77.054    | BEST (lindworm)
 
 
@@ -116,3 +116,4 @@ OPTIMISATION THOUGHTS
 - Robots that start in the middle should aim to spread out from the center in a radial manner.
     - e.g. 15
 - Robots that start in the corner should aim to approach the middle.
+    - Unless approaching the middle causes it to encounter an obstacle (e.g. 23), at which point it should move away from the obstacle.
