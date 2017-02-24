@@ -39,6 +39,9 @@ public class GreedyCRDAlgo {
             movementSchedule.put(i, new ArrayList<Integer>());
         }
 
+        // ---- Manual Optimisation Counter ----
+        int[] manualOptimizationList = new int[5];
+
         // Populate target list
         int awokenRobots = 1;
         System.out.println("Initialising robot 1 to be awake...");
@@ -60,7 +63,6 @@ public class GreedyCRDAlgo {
                             if(d < robots.get(i).remainingDistanceToClosestTarget){
                                 robots.get(i).remainingDistanceToClosestTarget = d;
                                 robots.get(i).closest = j; // We have a new closest robot!
-
                                 // TODO - should we check if any other robots have earlier 'claimed' this robot (and unset it?)
                             }
                         }
@@ -87,8 +89,44 @@ public class GreedyCRDAlgo {
             for (int i = 0; i<robots.size(); i++) {
                 if (robots.get(i).status == Robot.Status.AWAKE) {
                     robots.get(i).distanceAcquiredSinceLastJump += d;
+
+                    // ==== Manual Optimisation Section ====
+                    // (for action on all robots)
+                    /*if (i == 0) {
+
+                    }*/
                 }
             }
+
+            // ==== Manual Optimisation Section ====
+            /*if (nextRobotToReachTarget == 0) {
+                System.out.println("robot encountered");
+                switch (manualOptimizationList[0]++) {
+                    case 0:
+                        robots.get(nextRobotToReachTarget).closest = 191;
+                        System.out.println("MADE CHANGE");
+                        break;
+                    *//*case 1:
+                        robots.get(nextRobotToReachTarget).closest = 198;
+                        System.out.println("MADE CHANGE 2");
+                        break;*//*
+                }
+            }*/
+            /*if (nextRobotToReachTarget == 199) {
+                switch (manualOptimizationList[1]++) {
+                    case 0:
+                        robots.get(nextRobotToReachTarget).closest = 157;
+                        System.out.println("MADE CHANGE");
+                        break;
+                }
+            }*/
+            /*if (nextRobotToReachTarget == 138) {
+                switch (manualOptimizationList[2]++) {
+                    case 0:
+                        robots.get(nextRobotToReachTarget).closest = 127;
+                        break;
+                }
+            }*/
 
             // Set the location of the robot that moved.
             // Do this by setting the index of the robot that it moved to.
