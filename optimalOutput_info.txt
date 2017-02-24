@@ -27,11 +27,11 @@ OK | No | Time      | Best      | Remarks
  * | 21 | 96.365    | 97.188    | BEST!!!!!!! (id = 227 -> 191)
    | 22 | N/A       |           |
  Y | 23 | 204.296   | 204.296   | BEST (lindworm)
-   | 24 | N/A       |           |
+ Y | 24 | 279.416   | 279.191   | BEST (lindworm)
  Y | 25 | 352.793   | 352.793   | BEST (lindworm)
    | 26 | N/A       |           |
  Y | 27 | 103.198   | 103.198   | BEST (lindworm)
-   | 28 | N/A       |           |
+   | 28 | 111.567   | 111.567   | BEST (lindworm)
  Y | 29 | 103.219   | 103.219   | BEST (lindworm)
  Y | 30 | 77.054    | 77.054    | BEST (lindworm)
 
