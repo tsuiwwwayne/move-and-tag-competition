@@ -53,6 +53,9 @@ public class GreedyCRDAlgo {
                     for(int j = 0; j < robots.size(); j++){
                         if (robots.get(j).status == Robot.Status.ASLEEP) {
                             double d = pathFinder.getDistance(robots.get(i).currentPositionIndex, robots.get(j).currentPositionIndex) - robots.get(i).distanceAcquiredSinceLastJump;
+                            if(x == 3){
+                                System.out.println("Robot " + i + " is " + d + " from " + j + " and " + j + " has coordinates " + robots.get(j).getPosition().getX() + " " + robots.get(j).getPosition().getY());
+                            }
                             // Only update dist if its shorter path
                             if(d < robots.get(i).remainingDistanceToClosestTarget){
                                 robots.get(i).remainingDistanceToClosestTarget = d;
